@@ -6,6 +6,7 @@ import UserContainer from "./components/UserContainer";
 
 function App() {
     const [users, setUsers] = useState<TUser[]>([]);
+    const [addedUsers, setAddedUsers] = useState<TUser[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [searchEmail, setSearchEmail] = useState<string>("");
 
@@ -34,12 +35,27 @@ function App() {
         }
     }
 
-    function addUser() {}
+    function addUser() {
+        const foundUser = users.find((user) => {
+            return (
+                user.email.toLowerCase() === searchEmail.toLowerCase().trim()
+            );
+        });
+        if (!foundUser) return;
+        console.log(addedUsers);
+        if (!addedUsers.find((user) => user.id === foundUser.id)) {
+            setAddedUsers([...addedUsers, foundUser]);
+        }
+    }
 
     if (isLoading) {
         <div className="App__loading">
             <h1 className="h1__loading">Загрузка...</h1>
         </div>;
+    }
+
+    function handleUserClick(email: string) {
+        setSearchEmail(email);
     }
 
     return (
@@ -50,22 +66,25 @@ function App() {
                 организации, добавляя их адреса электронной почты. У них должна
                 быть учетная запись на сайте.
             </p>
-            <form>
-                <div>Введите email участника</div>
-                <div>
-                    <input
-                        className="input__email"
-                        type="email"
-                        name="email"
-                        value={searchEmail}
-                        onChange={(e) => setSearchEmail(e.target.value)}
-                        autoComplete="off"
-                    ></input>
-                    <button className="button__email" onClick={() => addUser()}>
-                        Добаваить участника
-                    </button>
-                </div>
-            </form>
+            <div>Введите email участника</div>
+            <div>
+                <input
+                    className="input__email"
+                    type="search"
+                    name="email"
+                    value={searchEmail}
+                    onChange={(e) => setSearchEmail(e.target.value)}
+                    autoComplete="off"
+                    required
+                ></input>
+                <button
+                    className="button__email"
+                    onClick={() => addUser()}
+                    disabled={!searchEmail}
+                >
+                    Добаваить участника
+                </button>
+            </div>
             <div className="container">
                 {users.map((user) => {
                     return (
@@ -75,6 +94,23 @@ function App() {
                             username={user.username}
                             address={user.address}
                             email={user.email}
+                            onClick={() => handleUserClick(user.email)}
+                        />
+                    );
+                })}
+            </div>
+            <h1>Добавленные участники</h1>
+            <div className="container">
+                {addedUsers.map((user) => {
+                    return (
+                        <UserContainer
+                            key={user.id}
+                            name={user.name}
+                            username={user.username}
+                            address={user.address}
+                            email={user.email}
+                            isAddedUser={true}
+                            onClick={() => handleUserClick(user.email)}
                         />
                     );
                 })}

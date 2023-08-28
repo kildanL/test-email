@@ -3,6 +3,9 @@
     border: 0.2rem solid #000;
     display: flex;
     position: relative;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
 }
 
 .avatar {
@@ -27,4 +30,10 @@
     top: 0.3rem;
     right: 0.3rem;
     cursor: pointer;
+}
+
+.info__container {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
 }
