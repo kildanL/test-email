@@ -14,8 +14,15 @@ export default function UserContainer({
     address: TAddress;
 }) {
     return (
-        <div className="user-contaner">
-            <div className=""></div>
+        <div className={st.user__container}>
+            <div className={st.avatar}>А</div>
+            <div className={st.info__container}>
+                <div className={st.username}>{username}</div>
+                <div className={st.name}>{name}</div>
+                <div className={st.address}>{address.city}</div>
+            </div>
+
+            <div className={st.btn__delete} />
         </div>
     );
 }
