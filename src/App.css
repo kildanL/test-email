@@ -1,0 +1,11 @@
+.App {
+}
+
+.input__email {
+    border: 0.1rem solid #000;
+}
+
+.button__email {
+    cursor: pointer;
+    background-color: rgb(0, 119, 255);
+}
