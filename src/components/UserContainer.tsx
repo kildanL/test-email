@@ -4,7 +4,6 @@ import st from "../styles/Container.module.css";
 
 export default function UserContainer({
     name,
-    username,
     email,
     address,
     onClick,
@@ -14,11 +13,14 @@ export default function UserContainer({
     username: string;
     email: string;
     address: TAddress;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLDivElement>;
     isAddedUser?: boolean;
 }) {
     return (
-        <button onClick={onClick} className={st.user__container}>
+        <div
+            onClick={isAddedUser ? undefined : onClick}
+            className={st.user__container}
+        >
             <div className={st.avatar}>А</div>
             <div className={st.info__container}>
                 <div className={st.email}>{email}</div>
@@ -26,7 +28,10 @@ export default function UserContainer({
                 <div className={st.address}>{address.city}</div>
             </div>
             {/* <button onClick={}></button> */}
-            <div className={isAddedUser ? st.btn__delete : undefined} />
-        </button>
+            <div
+                onClick={onClick}
+                className={isAddedUser ? st.btn__delete : undefined}
+            />
+        </div>
     );
 }

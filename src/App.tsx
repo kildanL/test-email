@@ -42,20 +42,24 @@ function App() {
             );
         });
         if (!foundUser) return;
-        console.log(addedUsers);
         if (!addedUsers.find((user) => user.id === foundUser.id)) {
             setAddedUsers([...addedUsers, foundUser]);
         }
+        setSearchEmail("");
+    }
+
+    function deleteUser(id: number) {
+        setAddedUsers(addedUsers.filter((user) => user.id !== id));
+    }
+
+    function handleUserClick(email: string) {
+        setSearchEmail(email);
     }
 
     if (isLoading) {
         <div className="App__loading">
             <h1 className="h1__loading">Загрузка...</h1>
         </div>;
-    }
-
-    function handleUserClick(email: string) {
-        setSearchEmail(email);
     }
 
     return (
@@ -85,20 +89,25 @@ function App() {
                     Добаваить участника
                 </button>
             </div>
-            <div className="container">
-                {users.map((user) => {
-                    return (
-                        <UserContainer
-                            key={user.id}
-                            name={user.name}
-                            username={user.username}
-                            address={user.address}
-                            email={user.email}
-                            onClick={() => handleUserClick(user.email)}
-                        />
-                    );
-                })}
-            </div>
+            {!users.length ? (
+                <div>Участники не найдены</div>
+            ) : (
+                <div className="container">
+                    {users.map((user) => {
+                        return (
+                            <UserContainer
+                                key={user.id}
+                                name={user.name}
+                                username={user.username}
+                                address={user.address}
+                                email={user.email}
+                                onClick={() => handleUserClick(user.email)}
+                            />
+                        );
+                    })}
+                </div>
+            )}
+
             <h1>Добавленные участники</h1>
             <div className="container">
                 {addedUsers.map((user) => {
@@ -110,11 +119,18 @@ function App() {
                             address={user.address}
                             email={user.email}
                             isAddedUser={true}
-                            onClick={() => handleUserClick(user.email)}
+                            onClick={() => deleteUser(user.id)}
                         />
                     );
                 })}
             </div>
+
+            <button
+                className="button__save"
+                onClick={() => console.log(addedUsers)}
+            >
+                Сохранить
+            </button>
         </div>
     );
 }
