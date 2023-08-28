@@ -10,3 +10,13 @@ export async function FetchAllUsers(): Promise<AxiosResponse> {
         .then((response: AxiosResponse) => response)
         .catch((error: AxiosResponse) => error);
 }
+
+export async function FetchSearchUsers(
+    searchEmail: string
+): Promise<AxiosResponse> {
+    // searchEmail: string
+    return await axios
+        .get<TUser[]>(`/users?email_like=${searchEmail}`)
+        .then((response: AxiosResponse) => response)
+        .catch((error: AxiosResponse) => error);
+}
