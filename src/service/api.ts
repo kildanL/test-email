@@ -14,7 +14,6 @@ export async function FetchAllUsers(): Promise<AxiosResponse> {
 export async function FetchSearchUsers(
     searchEmail: string
 ): Promise<AxiosResponse> {
-    // searchEmail: string
     return await axios
         .get<TUser[]>(`/users?email_like=${searchEmail}`)
         .then((response: AxiosResponse) => response)

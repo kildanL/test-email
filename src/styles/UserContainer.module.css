@@ -1,0 +1,91 @@
+.user__container {
+    width: 100%;
+    background-color: #fff;
+    border: 0.125rem solid var(--pale-grey-color);
+    border-radius: 0.1rem;
+    display: flex;
+    column-gap: 0.4rem;
+    position: relative;
+    margin: 0;
+    padding: 0.9rem;
+    cursor: pointer;
+}
+
+.user__container_not_active {
+    width: 100%;
+    background-color: #fff;
+    border: 0.125rem solid var(--pale-grey-color);
+    border-radius: 0.1rem;
+    display: flex;
+    column-gap: 0.4rem;
+    position: relative;
+    margin: 0;
+    padding: 0.9rem;
+    cursor: auto;
+}
+
+.user__container_not_active:hover {
+    border: 0.125rem solid var(--pale-grey-color);
+}
+
+.user__container:hover {
+    border: 0.125rem solid var(--grey-color);
+    transition: 200ms;
+}
+
+.avatar {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: var(--blue-color);
+    color: #fff;
+    font-size: 1.3rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    align-self: center;
+}
+
+.btn__delete {
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    margin: 10px;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.btn__delete_hide {
+    display: none;
+}
+
+.info__container {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+.email {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--grey-color);
+    margin-bottom: 0.5rem;
+}
+
+.name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black-color);
+    margin-bottom: 0.5rem;
+}
+
+.address {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--grey-color);
+    margin-bottom: 0.5rem;
+}
